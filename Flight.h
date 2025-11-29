@@ -1,5 +1,5 @@
-#ifndef Flight_H
-#define Flight_H
+#ifndef FLIGHT_H
+#define FLIGHT_H
 
 #include <string>
 #include <vector>

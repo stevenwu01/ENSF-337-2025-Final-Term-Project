@@ -18,14 +18,14 @@ public:
             //first , last , phonenum , row , seat , id
     string getfirstname() const;
     string getlastname() const;
-    string getphone() const;
+    string getphonenum() const;
     int getrow() const;
     char getseat() const;
     int getid() const;
 
     void setfirstname(const string& f);
     void setlastname(const string& l);
-    void setphone(const string& p);
+    void setphonenum(const string& p);
     void setrow(int r);
     void setseat(char s);
     void setid(int pid);

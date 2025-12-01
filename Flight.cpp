@@ -93,7 +93,7 @@ void flight::displaypassengerlist() const {
     for (int i = 0; i < passengers.size(); i++) {
         cout << passengers[i].getfirstname() << " "
             << passengers[i].getlastname() << " "
-            << passengers[i].getphone() << "  Seat: "
+            << passengers[i].getphonenum() << "  Seat: "
             << passengers[i].getrow() << passengers[i].getseat()
             << "  ID: " << passengers[i].getid()
             << endl;
@@ -106,7 +106,7 @@ void flight::savepassengerstofile(ofstream& fout) const {
         fout << flightid << " "
              << passengers[i].getfirstname() << " "
              << passengers[i].getlastname() << " "
-             << passengers[i].getphone() << " "
+             << passengers[i].getphonenum() << " "
              << passengers[i].getrow() << passengers[i].getseat() << " "
              << passengers[i].getid() 
              << endl;

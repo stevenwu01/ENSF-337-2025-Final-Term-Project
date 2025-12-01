@@ -3,35 +3,35 @@
 // Default: invalid seat
 Seat::Seat() {
     row_number = 0;
-    seat_character = ' ';
+    seat_letter = ' ';
 }
 
 Seat::Seat(int row, char seat) {
     row_number = row;
-    seat_character = seat;
+    seat_letter = seat;
 }
 
-int Seat::getRow() const {
+int Seat::getRowNumber() const {
     return row_number;
 }
 
 char Seat::getSeatChar() const {
-    return seat_character;  
+    return seat_letter;  
 }
 
-void Seat::setRow(int row) {
+void Seat::setRowNumber(int row) {
     row_number = row;
 }
 
 void Seat::setSeatChar(char seat) {
-    seat_character = seat;
+    seat_letter = seat;
 }
 
 std::string Seat::getSeatLabel() const {
-    return std::to_string(row_number) + seat_character; 
+    return std::to_string(row_number) + seat_letter; 
 }
 
 bool Seat::operator==(const Seat& other) const {
     return (row_number == other.row_number) &&
-            (seat_character == other.seat_character);
+            (seat_letter == other.seat_letter);
 } 

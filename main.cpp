@@ -25,6 +25,16 @@ int main(){
 
 
 void loadflights(vector<flight>& flights){
+    ifstream fin("file.txt"){
+    cout << "Error: could not open file.txt"
+        return;
+    }
+    string id, dep, des;
+    int rows, spr;
+
+    while (fin >> id >> dep >> des >> rows >> spr){
+        flight f(id, dep, des, rows, spr)
+    }
     
 
 }

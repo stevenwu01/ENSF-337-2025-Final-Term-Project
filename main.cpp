@@ -25,8 +25,9 @@ int main(){
 
 
 void loadflights(vector<flight>& flights){
-    ifstream fin("file.txt"){
-    cout << "Error: could not open file.txt"
+    ifstream fin("flights.txt");
+    if(!fin){
+    cout << "Error: could not open file.txt\n"
         return;
     }
     string id, dep, des;
@@ -34,9 +35,10 @@ void loadflights(vector<flight>& flights){
 
     while (fin >> id >> dep >> des >> rows >> spr){
         flight f(id, dep, des, rows, spr)
+        flights.pushback(f)
     }
+    fin.close();
     
-
 }
 void loadpassengers(vector<flight>& flights){
 
@@ -49,7 +51,7 @@ void saveall(const vector<flight>& flights){
         return;
     }
     for (const flights& f : flights){
-        f.savepassengersto file (fout);
+        f.savepassengerstofile(fout);
     }
     fout.close();
 }

@@ -7,25 +7,20 @@
 
 class Airline {
 private:
-    std::string name;              // Airline name
-    std::vector<Flight> flights;   // All flights owned by this airline
+    std::string name;
+    std::vector<flight> flights;  
 
 public:
-    // ---- Constructors ----
     Airline();
     Airline(const std::string& airlineName);
 
-    // ---- Basic Getters ----
     std::string getName() const;
-    const std::vector<Flight>& getFlights() const;
-    std::vector<Flight>& getFlights();   // non-const version
+    std::vector<flight>& getFlights();
+    const std::vector<flight>& getFlights() const;
 
-    // ---- Core Operations ----
-    void addFlight(const Flight& f);    // from UML: +addFlight()
-    int  findFlightIndex(const std::string& flightId) const;
-
-    // Optional helper
-    Flight* getFlightById(const std::string& flightId);
+    void addFlight(const flight& f);
+    int findFlightIndex(const std::string& flightId) const;
+    flight* getFlightById(const std::string& flightId);
 };
 
 #endif

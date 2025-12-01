@@ -49,9 +49,23 @@ int main(){
         }
         else if (choice == 2){
             //display seat map
+            if(selected == -1){
+                cout << "No flight selected. Please select a flight first." << endl;
+            }
+            else{
+                flights[selected].displayseatmap();
+            }
+            pressEntertoContinue();
         }
         else if (choice == 3){
             //display passenger info
+            if (selected == -1){
+                cout << "No flight selected. Please select a flight first." << endl;
+            }
+            else{
+                flights[selected].displaypassengerlist();
+            }
+            pressEntertoContinue();
         }
         else if (choice == 4){
             //add passenger
@@ -79,6 +93,7 @@ int main(){
 
 
 void loadflights(vector<flight>& flights){
+
 
 }
 void loadpassengers(vector<flight>& flights){

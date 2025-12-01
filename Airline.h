@@ -8,19 +8,19 @@
 class Airline {
 private:
     std::string name;
-    std::vector<Flight> flights;  
+    std::vector<flight> flights;  
 
 public:
     Airline();
     Airline(const std::string& airlineName);
 
     std::string getName() const;
-    std::vector<Flight>& getFlights();
-    const std::vector<Flight>& getFlights() const;
+    std::vector<flight>& getFlights();
+    const std::vector<flight>& getFlights() const;
 
-    void addFlight(const Flight& f);
+    void addFlight(const flight& f);
     int findFlightIndex(const std::string& flightId) const;
-    Flight* getFlightById(const std::string& flightId);
+    flight* getFlightById(const std::string& flightId);
 };
 
 #endif

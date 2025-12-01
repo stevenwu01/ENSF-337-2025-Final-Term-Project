@@ -25,13 +25,23 @@ int main(){
 
 
 void loadflights(vector<flight>& flights){
+    
 
 }
 void loadpassengers(vector<flight>& flights){
 
 }
 void saveall(const vector<flight>& flights){
+    ofstream fout ("passengers.txt");
 
+    if (!fout) {
+        cout<< "Error: could not open passenger.txt for writing.\n";
+        return;
+    }
+    for (const flights& f : flights){
+        f.savepassengersto file (fout);
+    }
+    fout.close();
 }
 void showmenu(){
     //1 show all flight and let user choose

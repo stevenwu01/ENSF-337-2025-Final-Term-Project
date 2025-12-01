@@ -8,7 +8,7 @@
 class Airline {
 private:
     std::string name;
-    std::vector<flight> flights;  
+    std::vector<Flight> flights;  
 
 public:
     Airline();

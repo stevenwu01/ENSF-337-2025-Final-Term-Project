@@ -13,7 +13,7 @@ passenger::passenger() {
 // Full constructor 
 passenger::passenger(string f, string l, string p, int r, char s, int pid) {
     firstname = f;
-    lastname = 1;
+    lastname = l;
     phonenum = p;
     row = r;
     seat = s;
@@ -50,23 +50,23 @@ void passenger::setfirstname(const string& f) {
     firstname = f;
 }
 
-void passenger::setlastname(string& l) {
+void passenger::setlastname(const string& l) {
     lastname = l;
 }
 
-void passenger::setphonenum(string& p) {
+void passenger::setphonenum(const string& p) {
     phonenum = p;
 }
 
-void passenger::setrow(int& r) {
+void passenger::setrow(int r) {
     row = r;
 }
 
-void passenger::setseat(char& s) {
+void passenger::setseat(char s) {
     seat = s;
 }
 
-void passenger::setid(int& pid) {
+void passenger::setid(int pid) {
     id = pid;
 }
 

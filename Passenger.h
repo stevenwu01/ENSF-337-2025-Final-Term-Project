@@ -1,5 +1,5 @@
 #ifndef Passenger_H
-#define Passenger_h
+#define Passenger_H
 #include <string>
 using namespace std;
 

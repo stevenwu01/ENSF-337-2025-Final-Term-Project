@@ -11,7 +11,7 @@ passenger::passenger() {
 }
 
 // Full constructor 
-passenger::passenger(string f, string 1, string p, int r, char s, int pid) {
+passenger::passenger(string f, string l, string p, int r, char s, int pid) {
     firstname = f;
     lastname = 1;
     phonenum = p;
@@ -46,7 +46,7 @@ int passenger::getid() const {
 }
 
 // ---- Setters ----
-void passenger::setfirstname(string& f) {
+void passenger::setfirstname(const string& f) {
     firstname = f;
 }
 

@@ -6,15 +6,69 @@
 
 using namespace std;
 
+void showmenu();
+void printwelcome();
+void pressEntertoContinue();
+
 void loadflights(vector<flight>& flights);
 void loadpassengers(vector<flight>& flights);
 void saveall(const vector<flight>& flights);
-void showmenu();
-void printwelcome();
 
 int main(){
     printwelcome();
+    pressEntertoContinue();
+
+    vector<flight> flights;
+    loadpassengers(flights);
+
+    int choice = 0,selected = -1;
+
+    while (choice != 7){
+        showmenu();
+        cin >> choice;
+        
+        if (choice == 1){
+            //select flight
+            cout <<endl<<"Here is the list of available flight:"<<endl;
+
+            for(int i = 0; i < flights.size();i++){
+                cout << i << "." << flights[i].getflightid() << "  " << flights[i].getdeparture() << " to " << flights[i].getdestination() <<endl;
+            }
+
+            cout << "Enter your choice:";
+            cin >> selected;
+
+            if(selected < 0 || selected >= flights.size()){
+                cout << "Invalid choice." << endl;
+                selected = -1;
+            }
+            else{
+                cout << "You have selected flight " << flights[selected].getflightid() << " from " << flights[selected].getdeparture() << " to " << flights[selected].getdestination() << "." << endl;
+            }
+            pressEntertoContinue();
+        }
+        else if (choice == 2){
+            //display seat map
+        }
+        else if (choice == 3){
+            //display passenger info
+        }
+        else if (choice == 4){
+            //add passenger
+        }
+        else if (choice == 5){
+            //remove passenger
+        }
+        else if (choice == 6){
+            saveall(flights);
+            pressEntertoContinue();
+        }
+    }
+
     showmenu();
+
+    
+    
     //print welcome 
     //wait for user
     //create menu
@@ -57,4 +111,9 @@ void printwelcome(){
     cout << "Term Project - Flight Management Program in C++"<<endl;
     cout << "Produced by: Student Name"<<endl;
     cout << "Year: 2023"<<endl;
+}
+
+void pressEntertoContinue(){
+    cout << "-------Press ENTER to continue-------";
+    cin.ignore();
 }

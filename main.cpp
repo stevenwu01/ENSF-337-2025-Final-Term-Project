@@ -140,8 +140,9 @@ int main(){
             cout << "Enter last name: ";
             cin >> lname;
 
+            cin.ignore(9999, '\n');  
             cout << "Enter phone number: ";
-            cin >> phonenum;
+            getline(cin, phonenum);
 
             cout << "Enter the passenger's desired row: ";
             cin >> row;
@@ -260,13 +261,13 @@ void loadpassengers(vector<flight>& flights){
                 << " could not be matched to flight " << flightID << ".\n";  
         }
     
-        fin.close();
+        
     }
-
+    fin.close();
 }
 
 
-void saveall(const vector<flight>& flights){
+void saveall(const vector<flight>& flights){   
     ofstream fout ("passengers.txt");
 
     if (!fout) {
@@ -307,6 +308,6 @@ void printwelcome(){
 
 void pressEntertoContinue(){
     cout << "\n<<< Press ENTER to Continue >>>>\n";
-    cin.ignore();
+    cin.ignore(9999, '\n');
     cin.get();
 }

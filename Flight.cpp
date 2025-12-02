@@ -42,7 +42,7 @@ void flight::addpassenger(const passenger& p) {
 }
 // Removes passenger matching the given ID
 bool flight::removepassenger(int passengerid){
-    for ( int i = 0; i < passengers.size(); i++){
+    for ( size_t i = 0; i < passengers.size(); i++){
         if (passengers[i].getid() == passengerid){
             passengers.erase(passengers.begin() + i);
             return true;
@@ -52,7 +52,7 @@ bool flight::removepassenger(int passengerid){
 }
 // Checks if a specific seat is taken
 bool flight::isseattaken(int r, char s) const{
-    for(int i = 0; i < passengers.size(); i++){
+    for(size_t i = 0; i < passengers.size(); i++){
         if (passengers[i].getrow() == r && passengers[i].getseat() == s){
             return true;
         }
@@ -65,15 +65,15 @@ void flight::displayseatmap() const{
     cout<< "Seat Map for flight " << flightid << endl;
     // seat letter first
     //then row
-    cout << "  ";
+    cout << "    ";
     for ( int i = 0; i < seatsperrow; i++){
         cout << char('A' + i) << " ";
     }
 
-
     cout << endl;
+
     for (int r = 0; r < rows; r++){
-        cout << setw(2) << r << " ";
+        cout << setw(3) << r << " ";
         for (int c = 0 ; c < seatsperrow; c++){
             char letter = char('A' + c);
 
@@ -83,14 +83,16 @@ void flight::displayseatmap() const{
                 cout << "_ ";
             }
         }
-    }cout << endl;
+        cout << endl;
+    }
+    cout << endl;
 }
 //print passenger list
 
 void flight::displaypassengerlist() const {
     cout << "Passenger List for flight " << flightid << endl;
 
-    for (int i = 0; i < passengers.size(); i++) {
+    for (size_t i = 0; i < passengers.size(); i++) {
         cout << passengers[i].getfirstname() << " "
             << passengers[i].getlastname() << " "
             << passengers[i].getphonenum() << "  Seat: "
@@ -102,7 +104,7 @@ void flight::displaypassengerlist() const {
 
 // save passengers
 void flight::savepassengerstofile(ofstream& fout) const {
-    for (int i = 0; i < passengers.size(); i++) {
+    for (size_t i = 0; i < passengers.size(); i++) {
         fout << flightid << " "
              << passengers[i].getfirstname() << " "
              << passengers[i].getlastname() << " "

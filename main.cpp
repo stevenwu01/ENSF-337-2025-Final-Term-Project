@@ -33,14 +33,14 @@ int main(){
             //select flight
             cout <<endl<<"Here is the list of available flight:"<<endl;
 
-            for(int i = 0; i < flights.size();i++){
+            for(size_t i = 0; i < flights.size();i++){
                 cout << i << "." << flights[i].getflightid() << "  " << flights[i].getdeparture() << " to " << flights[i].getdestination() <<endl;
             }
 
             cout << "Enter your choice:";
             cin >> selected;
 
-            if(selected < 0 || selected >= flights.size()){
+            if(selected < 0 || static_cast<size_t>(selected) >= flights.size()){
                 cout << "Invalid choice." << endl;
                 selected = -1;
             }

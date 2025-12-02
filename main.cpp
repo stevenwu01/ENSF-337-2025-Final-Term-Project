@@ -20,7 +20,7 @@ int main(){
     pressEntertoContinue();
 
     vector<flight> flights;
-    loadflights(flights);
+    loadflights(flights); 
     loadpassengers(flights);
 
     int choice = 0,selected = -1;

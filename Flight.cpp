@@ -40,7 +40,7 @@ int flight::getseatsperrow() const{
 void flight::addpassenger(const passenger& p) {
     passengers.push_back(p);
 }
-
+// Removes passenger matching the given ID
 bool flight::removepassenger(int passengerid){
     for ( int i = 0; i < passengers.size(); i++){
         if (passengers[i].getid() == passengerid){
@@ -50,7 +50,7 @@ bool flight::removepassenger(int passengerid){
     }
     return false;
 }
-
+// Checks if a specific seat is taken
 bool flight::isseattaken(int r, char s) const{
     for(int i = 0; i < passengers.size(); i++){
         if (passengers[i].getrow() == r && passengers[i].getseat() == s){

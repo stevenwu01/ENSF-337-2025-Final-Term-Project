@@ -93,14 +93,35 @@ int main(){
 
 
 void loadflights(vector<flight>& flights){
+    ifstream fin("flights.txt");
+    if(!fin){
+    cout << "Error: could not open file.txt\n"
+        return;
+    }
+    string id, dep, des;
+    int rows, spr;
 
-
+    while (fin >> id >> dep >> des >> rows >> spr){
+        flight f(id, dep, des, rows, spr)
+        flights.pushback(f)
+    }
+    fin.close();
+    
 }
 void loadpassengers(vector<flight>& flights){
 
 }
 void saveall(const vector<flight>& flights){
+    ofstream fout ("passengers.txt");
 
+    if (!fout) {
+        cout<< "Error: could not open passenger.txt for writing.\n";
+        return;
+    }
+    for (const flights& f : flights){
+        f.savepassengerstofile(fout);
+    }
+    fout.close();
 }
 void showmenu(){
     //1 show all flight and let user choose
@@ -126,9 +147,4 @@ void printwelcome(){
     cout << "Term Project - Flight Management Program in C++"<<endl;
     cout << "Produced by: Student Name"<<endl;
     cout << "Year: 2023"<<endl;
-}
-
-void pressEntertoContinue(){
-    cout << "-------Press ENTER to continue-------";
-    cin.ignore();
 }

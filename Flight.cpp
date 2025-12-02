@@ -108,7 +108,7 @@ void flight::savepassengerstofile(ofstream& fout) const {
              << passengers[i].getlastname() << " "
              << passengers[i].getphonenum() << " "
              << passengers[i].getrow() << passengers[i].getseat() << " "
-             << passengers[i].getid() 
+             << passengers[i].getid()
              << endl;
     }
 }

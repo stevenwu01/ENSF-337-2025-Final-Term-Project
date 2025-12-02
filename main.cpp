@@ -6,15 +6,83 @@
 
 using namespace std;
 
+void showmenu();
+void printwelcome();
+void pressEntertoContinue();
+
 void loadflights(vector<flight>& flights);
 void loadpassengers(vector<flight>& flights);
 void saveall(const vector<flight>& flights);
-void showmenu();
-void printwelcome();
 
 int main(){
     printwelcome();
+    pressEntertoContinue();
+
+    vector<flight> flights;
+    loadpassengers(flights);
+
+    int choice = 0,selected = -1;
+
+    while (choice != 7){
+        showmenu();
+        cin >> choice;
+        
+        if (choice == 1){
+            //select flight
+            cout <<endl<<"Here is the list of available flight:"<<endl;
+
+            for(int i = 0; i < flights.size();i++){
+                cout << i << "." << flights[i].getflightid() << "  " << flights[i].getdeparture() << " to " << flights[i].getdestination() <<endl;
+            }
+
+            cout << "Enter your choice:";
+            cin >> selected;
+
+            if(selected < 0 || selected >= flights.size()){
+                cout << "Invalid choice." << endl;
+                selected = -1;
+            }
+            else{
+                cout << "You have selected flight " << flights[selected].getflightid() << " from " << flights[selected].getdeparture() << " to " << flights[selected].getdestination() << "." << endl;
+            }
+            pressEntertoContinue();
+        }
+        else if (choice == 2){
+            //display seat map
+            if(selected == -1){
+                cout << "No flight selected. Please select a flight first." << endl;
+            }
+            else{
+                flights[selected].displayseatmap();
+            }
+            pressEntertoContinue();
+        }
+        else if (choice == 3){
+            //display passenger info
+            if (selected == -1){
+                cout << "No flight selected. Please select a flight first." << endl;
+            }
+            else{
+                flights[selected].displaypassengerlist();
+            }
+            pressEntertoContinue();
+        }
+        else if (choice == 4){
+            //add passenger
+        }
+        else if (choice == 5){
+            //remove passenger
+        }
+        else if (choice == 6){
+            saveall(flights);
+            pressEntertoContinue();
+        }
+    }
+
     showmenu();
+
+    
+    
     //print welcome 
     //wait for user
     //create menu

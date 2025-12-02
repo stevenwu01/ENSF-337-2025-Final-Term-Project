@@ -28,6 +28,20 @@ int main(){
     while (choice != 7){
         showmenu();
         cin >> choice;
+
+        if (choice < 1 || choice > 7){
+            cout << "Invalid choice. Please try again." << endl;
+            pressEntertoContinue();
+            continue;
+        }
+        if (!cin){
+            cin.clear();
+            cin.ignore(9999,'\n');
+            cout << "Invalid input. Please try again." << endl;
+            pressEntertoContinue();
+            continue;
+        }
+        
         
         if (choice == 1){
             //select flight
@@ -39,6 +53,15 @@ int main(){
 
             cout << "Enter your choice:";
             cin >> selected;
+
+            if (!cin) {
+                cin.clear();
+                cin.ignore(9999, '\n');
+                cout << "Invalid input. Please enter a number." << endl;
+                selected = -1;
+                pressEntertoContinue();
+                continue;
+            }
 
             if(selected < 0 || static_cast<size_t>(selected) >= flights.size()){
                 cout << "Invalid choice." << endl;
@@ -59,6 +82,7 @@ int main(){
             }
             pressEntertoContinue();
         }
+
         else if (choice == 3){
             //display passenger info
             if (selected == -1){
@@ -69,6 +93,7 @@ int main(){
             }
             pressEntertoContinue();
         }
+
         else if (choice == 4){
             //add passenger
             if (selected == -1){
@@ -83,6 +108,31 @@ int main(){
             
             cout << "Enter passenger ID: ";
             cin >> pid;
+            
+            if (!cin) {
+                cin.clear();
+                cin.ignore(9999, '\n');
+                cout << "Invalid ID.\n";
+                pressEntertoContinue();
+                continue;
+            }
+
+            vector<passenger>& plist = flights[selected].getpassengerlist();
+            bool found = false;
+
+            for (size_t i = 0; i < plist.size(); i++) {
+                if (plist[i].getid() == pid) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                cout << "Error: A passenger with this ID already exists!" << endl;
+                pressEntertoContinue();
+                continue;
+            }
+
 
             cout << "Enter first name: ";
             cin >> fname;
@@ -122,10 +172,18 @@ int main(){
             int pid;
             cout<< "Enter passenger ID to remove: ";
             cin >> pid;
+            if (!cin) {
+                cin.clear();
+                cin.ignore(9999, '\n');
+                cout << "Invalid ID.\n";
+                pressEntertoContinue();
+                continue;
+            }
+
 
             bool remove = flights[selected].removepassenger(pid);
             if (remove){
-                cout << "Passenger with ID " << pid << " was successfully removed from flight " << flights[selected].getflightid() << endl;
+                cout << "Passenger with ID " << pid << " was  removed from flight " << flights[selected].getflightid() << endl;
             } else {
                 cout << "Passenger with ID " << pid << " not found "<< endl;
             }
@@ -168,8 +226,46 @@ void loadflights(vector<flight>& flights){
     
 }
 void loadpassengers(vector<flight>& flights){
+    ifstream fin("passengers.txt");
+    if (!fin) {
+        cout << "Warning: passengers.txt not found. No passengers loaded.\n";
+        return;
+    }
+
+ 
+    string flightID;
+    string fname, lname, phone;
+    string rowSeat; // example: "14B"
+    int pid;
+    
+    while (fin >> flightID >> fname >> lname >> phone >> rowSeat >> pid) {
+    
+        // Parse "12A" -> row = 12, seat = 'A'
+        char seat = rowSeat.back();
+        int row = stoi(rowSeat.substr(0, rowSeat.size() -1));
+    
+        passenger p(fname, lname, phone, row, seat, pid);
+    
+        bool found = false;
+        for (flight &f : flights) {
+            if (f.getflightid() == flightID) {
+                f.addpassenger(p);
+                found = true;
+                break;
+            }
+        }
+    
+        if (!found) {
+            cout << "Warning: Passenger with ID " << pid
+                << " could not be matched to flight " << flightID << ".\n";  
+        }
+    
+        fin.close();
+    }
 
 }
+
+
 void saveall(const vector<flight>& flights){
     ofstream fout ("passengers.txt");
 
@@ -205,8 +301,8 @@ void showmenu(){
 void printwelcome(){
     cout << "Version: 1.0"<<endl;
     cout << "Term Project - Flight Management Program in C++"<<endl;
-    cout << "Produced by: Student Name"<<endl;
-    cout << "Year: 2023"<<endl;
+    cout << "Produced by: Steven Wu, Fiemna Ekpombang, Uzair SAJID"<<endl;
+    cout << "Year: 2025"<<endl;
 }
 
 void pressEntertoContinue(){

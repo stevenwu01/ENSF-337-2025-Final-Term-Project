@@ -91,15 +91,26 @@ void flight::displayseatmap() const{
 
 void flight::displaypassengerlist() const {
     cout << "Passenger List for flight " << flightid << endl;
+    cout << left << setw(12) << "FirstName"
+         << setw(12) << "LastName"
+         << setw(16) << "Phone"
+         << setw(6)  << "Seat"
+         << setw(8)  << "ID"
+         << "\n";
 
+    cout << "--------------------------------------------------------------" << endl;
+    
     for (size_t i = 0; i < passengers.size(); i++) {
-        cout << passengers[i].getfirstname() << " "
-            << passengers[i].getlastname() << " "
-            << passengers[i].getphonenum() << "  Seat: "
-            << passengers[i].getrow() << passengers[i].getseat()
-            << "  ID: " << passengers[i].getid()
-            << endl;
+        string seat = to_string(passengers[i].getrow()) + passengers[i].getseat();
+
+        cout << left << setw(12) << passengers[i].getfirstname()
+             << setw(12) << passengers[i].getlastname()
+             << setw(15) << passengers[i].getphonenum()
+             << setw(6)  << seat
+             << setw(8)  << passengers[i].getid()
+             << endl;
     }
+    cout << endl;
 }
 
 // save passengers
